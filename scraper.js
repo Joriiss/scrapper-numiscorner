@@ -3,30 +3,27 @@ const { chromium } = require('playwright')
 async function scrapePrices() {
   console.log('Running scraper...')
 
-  const browser = await chromium.launch({ headless: false })
+  const browser = await chromium.launch({ headless: true }); 
   const page = await browser.newPage()
-  await page.goto('https://www.dealabs.com')
+  await page.goto('https://www.numiscorner.com/collections/antique-greek')
 
-  await page.getByRole('button', { name: 'Tout accepter' }).click()
-  await page.getByRole('button', { name: 'Les + hot' }).click()
-  await page.waitForTimeout(1000)
+  await page.getByRole('button', { name: 'Yes' }).click();
+  await page.getByRole('button', { name: 'Accept' }).click();
 
-  const productOfTheDay = await page.evaluate(() => {
-    const productElement = document.querySelector('article[id^="thread_"]')
+  const productDetails = await page.$$eval(
+    'div.product-item:not(#collectionProductPromo)',
+    divs => divs.map(div => {
+      const title = div.querySelector('h3')?.textContent.trim() || 'No title';
+      const price = div.querySelector('span.money')?.textContent.trim() || 'No price';
+      const metal = div.querySelector('div.legend-metal')?.textContent.trim() || 'No metal';
+      const link = div.querySelector('a.icons-container')?.href || 'No link';
+      const image = div.querySelector('div.solo-image img')?.src || 'No image';  // Get the first image's src
+      return { title, price, metal, link, image };
+    })
+  );
 
-    console.log('productElement', productElement)
-    if (productElement) {
-      return {
-        title: productElement.querySelector('.thread-title').textContent.trim(),
-        price: productElement.querySelector('.thread-price').textContent.trim(),
-        link: productElement.querySelector('a').href,
-      }
-    }
-    return null
-  })
-
+  // console.log('Product Details:', productDetails);
   await browser.close()
-  console.log('productOfTheDay', productOfTheDay)
-  return productOfTheDay
+  return productDetails; // Return the scraped data
 }
 module.exports = scrapePrices
