@@ -4,8 +4,8 @@
   "description": "",
   "main": "scraper.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "ui": "node front/front.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^1.7.9",
     "body-parser": "^1.20.3",
+    "cassandra-driver": "^4.7.2",
     "express": "^4.21.2",
     "node-cron": "^3.0.3",
     "playwright": "^1.49.1"
