@@ -7,7 +7,6 @@ This project is designed to scrape product data from [NumisCorner](https://www.n
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 ## Features
@@ -28,15 +27,47 @@ Before you begin, ensure you have the following installed:
 ## Installation
 
 1. **Clone the repository**:
-
+   
    ```bash
    git clone https://github.com/Joriiss/scrapper-numiscorner.git
    cd scrapper-numiscorner
 
-2. **Clone the repository**:
+3. **Install Node.js dependencies**:
+   
+   ```bash
+   npm install
 
-3. **Set up Cassandra**:
+5. **Set up Cassandra**:
+   
+   Ensure Cassandra is running and accessible. You can use the provided Docker Compose file to set up Cassandra:
+   
+   ```bash
+   docker-compose -f docker-compose-cassandra.yml up -d
+   ```
+   This will start a Cassandra instance on localhost:9042.
 
-## Configuration
 ## Usage
+
+1. **Run the server**
+
+   The scraper fetches product data from NumisCorner and saves it as a JSON file.
+
+   ```
+   node src/extract/scrape.js
+
 ## Project Structure
+
+   The project is organized as follows:
+   
+   ```
+   scrapper-numiscorner/
+   ├── data/
+   │   ├── raw/                # Raw data files
+   │   └── processed/          # Processed data and statistics
+   ├── src/
+   │   ├── extract/            # Data extraction scripts
+   │   ├── transform/          # Data processing scripts
+   │   └── load/               # Data loading scripts
+   ├── docker-compose-cassandra.yml  # Docker Compose file for Cassandra
+   ├── package.json            # Node.js dependencies
+   └── README.md               # Project documentation
