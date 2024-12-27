@@ -1,39 +1,42 @@
-# Price Scraper Project
+# NumisCorner Scraper Project
 
-Ce projet utilise Playwright pour scraper le site Dealabs et récupérer le produit du jour. Les informations sont ensuite envoyées à un backend Node.js. Le scrapper peut être exécuté manuellement ou automatiquement toutes les 5 minutes grâce à une tâche CRON.
+This project is designed to scrape product data from [NumisCorner](https://www.numiscorner.com/), process the data, and store it in a Cassandra database for further analysis.
 
-## Prérequis
+## Table of Contents
 
-- **Node.js** : Version 20.x ou supérieure est recommandée.
-- **npm** : Assurez-vous que npm est installé avec Node.js.
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+## Features
+
+- **Data Extraction**: Utilizes Playwright to scrape product details from NumisCorner's Antique Greek collection.
+- **Data Processing**: Cleans and analyzes the scraped data, calculating statistics such as average, median, minimum, and maximum prices.
+- **Data Storage**: Stores both raw and processed data in a Cassandra database for persistent storage and further analysis.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js**: Version 20.x or higher.
+- **npm**: Comes with Node.js.
+- **Python**: Version 3.6 or higher.
+- **Cassandra**: A running instance of Cassandra database.
 
 ## Installation
 
-1. Clonez le dépôt :
+1. **Clone the repository**:
 
-   ````bash
-   git clone <URL_DU_DEPOT>
-   cd scrap-and-back   ```
+   ```bash
+   git clone https://github.com/Joriiss/scrapper-numiscorner.git
+   cd scrapper-numiscorner
 
-   ````
+2. **Clone the repository**:
 
-2. Installez les dépendances :
-
-   ````bash
-   npm install   ```
-
-   ````
-
-3. Installez les dépendances de développement :
-   ````bash
-   npm install --save-dev typescript @types/node   ```
+3. **Set up Cassandra**:
 
 ## Configuration
-
-1. Assurez-vous que le fichier `tsconfig.json` est correctement configuré pour votre environnement.
-
-2. Modifiez les sélecteurs CSS dans `src/scraper.ts` si nécessaire pour cibler les éléments corrects sur Dealabs.
-
-## Compilation
-
-Compilez le projet TypeScript en JavaScript :
+## Usage
+## Project Structure
