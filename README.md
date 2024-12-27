@@ -62,12 +62,13 @@ Before you begin, ensure you have the following installed:
    ```
    scrapper-numiscorner/
    ├── data/
-   │   ├── raw/                # Raw data files
-   │   └── processed/          # Processed data and statistics
-   ├── src/
-   │   ├── extract/            # Data extraction scripts
-   │   ├── transform/          # Data processing scripts
-   │   └── load/               # Data loading scripts
+   │   ├── raw/                      # Raw data files
+   │   └── processed/                # Processed data and statistics
+   ├── extract/                      # Data extracting scripts
+   ├── transform/                    # Data processing scripts
+   ├── load/                         # Data loading scripts
+   ├── public/
+   │   └── index.html/               # Dashboard to display the data
    ├── docker-compose-cassandra.yml  # Docker Compose file for Cassandra
-   ├── package.json            # Node.js dependencies
-   └── README.md               # Project documentation
+   ├── package.json                  # Node.js dependencies
+   └── README.md                     # Project documentation
